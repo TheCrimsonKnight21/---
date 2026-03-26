@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main()
+{
+    for (int i = 1; i <= 10; i++) 
+    {
+        char arr[10];
+        for (int j = 0; j < i; j++) 
+        {
+            arr[j] = '*';
+        }
+        arr[i] = '\0';  
+        printf("%s\n", arr);
+    }
+
+    return 0;
+}
