@@ -222,7 +222,7 @@ void Task5() {
         }
     int number = 0;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < sizeof(n)/ sizeof(int); i++)
         number = 10 * number + n[i];
     
     if(strcmp(command, "add") == 0) {
