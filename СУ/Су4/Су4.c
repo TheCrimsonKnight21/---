@@ -11,12 +11,15 @@ void Task6();
 void Task7();
 void Task8();
 
+int **matrixes[100];
+int index = 0;
 typedef struct Student{
     int id;
     int friends[100];
 } Student;
 
 int** create_matrix(int n, int m);
+void free_matrix();
 
 int main(){
     int n;
@@ -50,8 +53,8 @@ int main(){
         default:
             printf("Invalid task number.\n");
     }
-
-    return 0;
+    free_matrix();
+    return 0;   
 }
 
 void Task1(){
@@ -166,7 +169,7 @@ void Task4() {
     printf("Enter the number of students: ");
     scanf("%d", &n);
     Student *students = malloc(n * sizeof(Student));
-
+    matrixes[index] = (int **)students;
     for (int i = 0; i < n; i++) {
         students[i].id = i + 1;
         printf("Enter the number of friends for student %d: ", students[i].id);
@@ -191,7 +194,11 @@ void Task5() {
     printf("Enter a command: ");
     fgets(commands, 100, stdin);
     commands[strcspn(commands, "\n")] = '\0';
-
+    matrixes[index] = (int **)commands;
+    matrixes[index + 1] = (int **)n;
+    matrixes[index + 2] = (int **)command;
+    matrixes[index + 3] = (int **)numbers;
+    index++;
 
     int reading_number = 0;
     int reading_command = 1;
@@ -272,6 +279,8 @@ void Task6() {
     scanf("%d", &n);
     int *numbers = malloc(n * sizeof(int));
     int *simple = malloc(n * sizeof(int));
+    matrixes[index] = (int **)numbers;
+    matrixes[index] = (int **)simple;
     printf("Enter the elements of the array:\n");
     for (int i = 0; i < n; i++) {
         scanf("%d", &numbers[i]);
@@ -345,6 +354,8 @@ void Task8() {
     int n = 1, m;
     int capacity = 10;
     int *numbers = malloc(capacity * sizeof(int));
+    matrixes[index] = (int **)numbers;
+    index++;
     for (size_t i = 0; i < 10; i++)
     {
        printf("Enter number: \n");
@@ -384,5 +395,12 @@ int **create_matrix(int n, int m) {
             scanf("%d", &matrix[i][j]);
         }
     }
+    matrixes[index] = matrix;
+    index++;
     return matrix;
+}
+void free_matrix() {
+    for (int i = 0; i < 100; i++) {
+        free(matrixes[i]);
+    }
 }
