@@ -213,10 +213,8 @@ void Task3(){
             if(words[i - 1][strlen(words[i - 1])-1] == words[i][0]) {
                 finalWords[i] = malloc(sizeof(char) * 50);
                 char* word = malloc(sizeof(char) * 50);
-                
-                printf("Words[i]: %s\n", words[i]);
+
                 strcpy(word, words[i]);
-                printf("Word: %s\n", word);
                 strcpy(finalWords[i], word);
                 free(word);
             }
